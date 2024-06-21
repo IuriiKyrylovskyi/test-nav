@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavComponent from './NavComponent.vue';
+import RangeComponent from './RangeComponent.vue';
+</script>
 
 <template>
-  <div>Frequency</div>
+  <NavComponent />
+  <RangeComponent />
 </template>
-
 <style scoped></style>
