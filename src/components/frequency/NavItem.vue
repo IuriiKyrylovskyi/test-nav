@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { INavItem } from '@/interfaces/navItems';
-defineProps<{
+import insertDot from '@/helpers/insertDot';
+
+const props = defineProps<{
   item: INavItem;
 }>();
+const { item } = props;
 </script>
 
 <template>
   <li class="nav-item">
     <p class="number">{{ item.id }}</p>
     <p class="frequency" :class="{ active: item.isActive }">
-      {{ item.frequency }}
+      {{ insertDot(item.frequency) }}
     </p>
   </li>
 </template>

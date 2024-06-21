@@ -1,36 +1,32 @@
-import { frequencyGap, maxFrequency, minFrequency } from 'src/utils/constants';
+import defineLimits from '@/helpers/defineLimits';
+import { INavItem } from '@/interfaces/navItems';
+import navItems from '@/utils/navItems';
+import { frequencyGap } from 'src/utils/constants';
 import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
 
-export interface IFreqState {
-  prevFrequency: number;
-  nextFrequency: number;
-  isPrevActive: boolean;
-}
-
-const initFreqState = {
-  prevFrequency: minFrequency,
-  nextFrequency: maxFrequency,
-  isPrevActive: true,
-};
-
-export const key: InjectionKey<Store<IFreqState>> = Symbol();
-
-export const store = createStore<IFreqState>({
-  state: initFreqState,
+export const key: InjectionKey<Store<INavItem[]>> = Symbol();
+export const store = createStore<INavItem[]>({
+  state: navItems,
   mutations: {
-    increaseFrequency(state: IFreqState, isSecond: boolean) {
-      return isSecond
-        ? (state.nextFrequency += frequencyGap)
-        : (state.prevFrequency += frequencyGap);
+    increaseFrequency(state: INavItem[]) {
+      return state.map((el) =>
+        el.isActive && defineLimits(el.frequency, 'asc')
+          ? (el.frequency += frequencyGap)
+          : el
+      );
     },
-    decreaseFrequency(state: IFreqState, isSecond: boolean) {
-      return isSecond
-        ? (state.nextFrequency -= frequencyGap)
-        : (state.prevFrequency -= frequencyGap);
+    decreaseFrequency(state: INavItem[]) {
+      return state.map((el) =>
+        el.isActive && defineLimits(el.frequency, 'des')
+          ? (el.frequency -= frequencyGap)
+          : el
+      );
     },
-    toggleIsFirstActive(state: IFreqState) {
-      state.isPrevActive = !state.isPrevActive;
+    toggleActiveFreq(state: INavItem[]) {
+      return state.map((el) =>
+        el.isActive ? (el.isActive = false) : (el.isActive = true)
+      );
     },
   },
 });

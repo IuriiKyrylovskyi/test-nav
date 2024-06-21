@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import NavItem from './NavItem.vue';
-import navItems from '../../utils/navItems';
 </script>
 
 <template>
   <div class="nav-table">
-    <NavItem v-for="item in navItems" :item="item" :key="item.id" />
+    <NavItem v-for="item in $store.state" :item="item" :key="item.id" />
   </div>
 </template>
 

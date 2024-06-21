@@ -8,12 +8,21 @@ import arrLine from 'src/assets/images/arrow-line.svg';
 <template>
   <div class="range-controls">
     <div class="range-controls__row">
-      <ArrowButton :position="NavPositions.TOP" />
+      <ArrowButton
+        :position="NavPositions.TOP"
+        @click="$store.commit('toggleActiveFreq')"
+      />
     </div>
     <div class="range-controls__row">
-      <ArrowButton :position="NavPositions.LEFT" />
-      <PushButton />
-      <ArrowButton :position="NavPositions.RIGHT" />
+      <ArrowButton
+        :position="NavPositions.LEFT"
+        @click="$store.commit('increaseFrequency')"
+      />
+      <PushButton @click="$store.commit('toggleActiveFreq')" />
+      <ArrowButton
+        :position="NavPositions.RIGHT"
+        @click="$store.commit('decreaseFrequency')"
+      />
 
       <span class="sign plus">+</span>
       <span class="sign minus">-</span>
@@ -21,7 +30,10 @@ import arrLine from 'src/assets/images/arrow-line.svg';
       <img class="line arrow-right" :src="arrLine" />
     </div>
     <div class="range-controls__row">
-      <ArrowButton :position="NavPositions.BOTTOM" />
+      <ArrowButton
+        :position="NavPositions.BOTTOM"
+        @click="$store.commit('toggleActiveFreq')"
+      />
     </div>
   </div>
 </template>

@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { NavPositions } from '@/interfaces/navItems';
-import { computed } from 'vue';
+
 const props = defineProps<{
   position: NavPositions;
 }>();
+
 const { position } = props;
+
 const emit = defineEmits<{
   (e: 'handleClick'): void;
 }>();
+
 const handleClick = () => {
   emit('handleClick');
 };
