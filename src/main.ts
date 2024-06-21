@@ -6,11 +6,12 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+let mainWindow: BrowserWindow;
 const windows = new Set();
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1800,
     height: 200,
     x: 0,
@@ -45,6 +46,7 @@ const createSecondWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.ts'),
     },
+    parent: mainWindow,
   });
 
   // // and load the index.html of the app.
