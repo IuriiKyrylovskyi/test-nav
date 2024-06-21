@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import { pluginExposeRenderer } from './vite.base.config';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config
 
@@ -19,7 +20,7 @@ export default defineConfig((env) => {
     build: {
       outDir: `.vite/renderer/${name}`,
     },
-    plugins: [pluginExposeRenderer(name), vue()],
+    plugins: [pluginExposeRenderer(name), vue(), tsconfigPaths()],
     resolve: {
       preserveSymlinks: true,
     },
