@@ -9,6 +9,7 @@ import { INavItem } from '@/interfaces/navItems';
 import navItems from '@/utils/navItems';
 import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
+import { mutationPlugin } from './mutationPlugin';
 
 export const key: InjectionKey<Store<INavItem[]>> = Symbol();
 
@@ -47,6 +48,7 @@ export const store = createStore<IStoreState>({
       return reset(state);
     },
   },
+  // plugins: [mutationPlugin], // !! breaks the app
 });
 
 export function useStore() {

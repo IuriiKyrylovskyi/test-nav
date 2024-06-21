@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import { Routes } from './interfaces/global';
 
@@ -7,6 +7,7 @@ const rendererLoadUrlIndex = `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`;
 const rendererLoadUrl = `${rendererLoadUrlIndex}/#${Routes.FREQUENCY}`;
 
 let mainWindow: BrowserWindow;
+let secondWindow: BrowserWindow;
 const windows = new Set();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -18,7 +19,7 @@ const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1800,
-    height: 200,
+    height: 300,
     x: 0,
     y: 0,
     webPreferences: {
@@ -43,17 +44,17 @@ const createWindow = () => {
 
 const createSecondWindow = () => {
   // Create the browser window.
-  const secondWindow = new BrowserWindow({
+  secondWindow = new BrowserWindow({
     width: 1800,
-    height: 400,
+    height: 430,
     x: 0,
-    y: 225,
+    y: 325,
     webPreferences: {
       preload: path.join(__dirname, 'preload.ts'),
       webSecurity: false,
       plugins: true,
     },
-    // parent: mainWindow,
+    parent: mainWindow,
   });
 
   // // and load the index.html of the app.
@@ -95,5 +96,8 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+ipcMain.on('vuex-mutation', (event, mutation) => {
+  // currently only 1 window, but if you require multiple windows
+  // you can store them in an array and loop over all the items
+  secondWindow.webContents.send('vuex-scoreboard-mutation', mutation);
+});

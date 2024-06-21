@@ -7,10 +7,10 @@ import insertDot from '@/helpers/insertDot';
 
 <template>
   <PageContainer>
-    <div class="">{{ $store.state.navItems }}</div>
-    <div class="">{{ insertDot($store.state.entered) }}</div>
     <Keyboard />
     <Controls />
+    <div class="">{{ $store.state.navItems }}</div>
+    <div class="">{{ insertDot($store.state.entered) }}</div>
   </PageContainer>
 </template>
 

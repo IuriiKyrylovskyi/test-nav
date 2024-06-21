@@ -41,6 +41,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@vueuse/electron": "^10.11.0",
     "electron-squirrel-startup": "^1.0.1",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3",
