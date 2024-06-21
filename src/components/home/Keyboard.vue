@@ -15,5 +15,7 @@ import KeyButton from './KeyButton.vue';
   gap: 6px;
   justify-content: center;
   width: 100%;
+
+  flex-wrap: wrap;
 }
 </style>

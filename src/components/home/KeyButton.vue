@@ -3,7 +3,6 @@ defineProps<{
   number: number;
 }>();
 </script>
-
 <template>
   <li class="key-wrap">
     <div class="key-button">
@@ -16,7 +15,7 @@ defineProps<{
 
 <style scoped lang="less">
 .key-wrap {
-  flex: 0 0 34px;
+  flex: 0 0 54px;
   aspect-ratio: 1 / 1;
   padding: 2px;
   background: #0c0d0d;
@@ -39,6 +38,7 @@ defineProps<{
   cursor: pointer;
   flex-shrink: 0;
   font-size: 10px;
+  font-size: 16px;
   font-weight: 600;
   color: #fff;
   line-height: 24px;
