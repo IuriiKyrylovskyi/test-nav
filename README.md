@@ -28,8 +28,14 @@ https://www.electronforge.io/guides/framework-integration/vue-3#integrating-vue-
 
 # Tasks
 
-<img width="433" alt="Screenshot 2024-06-21 at 12 47 25" src="https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/03c848de-b0fe-41c5-9d88-8d3e7a5f5ebf">
+![01](https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/58c539cf-8009-4c36-8c85-bb7465926b65)
 
-<img width="443" alt="Screenshot 2024-06-21 at 12 47 19" src="https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/25f59631-d8a8-4867-9ee8-0098c195b25a">
+## ----
 
-<img width="470" alt="Screenshot 2024-06-21 at 12 47 08" src="https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/990c4f0f-01d1-4fca-a3b4-0f0cfc366068">
+![02](https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/f92b8ed4-51e4-4419-8865-6cb2596d07a3)
+
+## ----
+
+![03](https://github.com/IuriiKyrylovskyi/test-nav/assets/65412895/666fffc9-dfac-46ca-8296-1f0fe133f9a3)
+
+
