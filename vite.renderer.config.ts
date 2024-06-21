@@ -1,8 +1,11 @@
 import type { ConfigEnv, UserConfig } from 'vite';
 import { defineConfig } from 'vite';
 import { pluginExposeRenderer } from './vite.base.config';
+import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
 // https://vitejs.dev/config
+
 export default defineConfig((env) => {
   const forgeEnv = env as ConfigEnv<'renderer'>;
   const { root, mode, forgeConfigSelf } = forgeEnv;
@@ -11,11 +14,12 @@ export default defineConfig((env) => {
   return {
     root,
     mode,
-    base: './',
+    // base: './',
+    base: path.resolve(__dirname, './dist/'),
     build: {
       outDir: `.vite/renderer/${name}`,
     },
-    plugins: [pluginExposeRenderer(name)],
+    plugins: [pluginExposeRenderer(name), vue()],
     resolve: {
       preserveSymlinks: true,
     },
