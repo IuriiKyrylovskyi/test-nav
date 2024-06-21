@@ -16,12 +16,12 @@ import arrLine from 'src/assets/images/arrow-line.svg';
     <div class="range-controls__row">
       <ArrowButton
         :position="NavPositions.LEFT"
-        @click="$store.commit('increaseFrequency')"
+        @click="$store.commit('decreaseFrequency')"
       />
       <PushButton @click="$store.commit('toggleActiveFreq')" />
       <ArrowButton
         :position="NavPositions.RIGHT"
-        @click="$store.commit('decreaseFrequency')"
+        @click="$store.commit('increaseFrequency')"
       />
 
       <span class="sign plus">+</span>
@@ -72,9 +72,9 @@ import arrLine from 'src/assets/images/arrow-line.svg';
   top: 0px;
 }
 .plus {
-  left: 0;
+  right: 0;
 }
 .minus {
-  right: 0;
+  left: 0;
 }
 </style>

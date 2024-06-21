@@ -4,7 +4,11 @@ import NavItem from './NavItem.vue';
 
 <template>
   <div class="nav-table">
-    <NavItem v-for="item in $store.state" :item="item" :key="item.id" />
+    <NavItem
+      v-for="item in $store.state.navItems"
+      :item="item"
+      :key="item.id"
+    />
   </div>
 </template>
 

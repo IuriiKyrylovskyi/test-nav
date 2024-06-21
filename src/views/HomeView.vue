@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HomeComponent from '@/components/home/HomeComponent.vue';
+</script>
 
 <template>
-  <router-link to="/frequency"><h1>💖 Hello World!</h1></router-link>
-
-  <p>Welcome to your Electron application.</p>
+  <HomeComponent />
 </template>
