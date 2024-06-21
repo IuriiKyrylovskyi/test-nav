@@ -2,6 +2,7 @@ import type { ConfigEnv, UserConfig } from 'vite';
 import { defineConfig } from 'vite';
 import { pluginExposeRenderer } from './vite.base.config';
 import vue from '@vitejs/plugin-vue';
+import path from 'path';
 
 // https://vitejs.dev/config
 
@@ -13,7 +14,8 @@ export default defineConfig((env) => {
   return {
     root,
     mode,
-    base: './',
+    // base: './',
+    base: path.resolve(__dirname, './dist/'),
     build: {
       outDir: `.vite/renderer/${name}`,
     },

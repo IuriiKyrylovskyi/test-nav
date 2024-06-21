@@ -6,11 +6,15 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+const windows = new Set();
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1800,
+    height: 200,
+    x: 0,
+    y: 0,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -20,17 +24,52 @@ const createWindow = () => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+    mainWindow.loadFile(
+      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
+    );
   }
+
+  windows.add(mainWindow);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
 
+const createSecondWindow = () => {
+  // Create the browser window.
+  const secondWindow = new BrowserWindow({
+    width: 1800,
+    height: 400,
+    x: 0,
+    y: 225,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.ts'),
+    },
+  });
+
+  // // and load the index.html of the app.
+  if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
+    secondWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+  } else {
+    secondWindow.loadFile(
+      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
+    );
+  }
+
+  windows.add(secondWindow);
+
+  // Open the DevTools.
+  secondWindow.webContents.openDevTools();
+};
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  createSecondWindow();
+});
+// app.on('ready', createSecondWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -46,6 +85,7 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
+    createSecondWindow();
   }
 });
 
