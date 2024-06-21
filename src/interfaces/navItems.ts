@@ -3,3 +3,10 @@ export interface INavItem {
   frequency: number;
   isActive?: boolean;
 }
+
+export enum NavPositions {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+  RIGHT = 'right',
+  LEFT = 'left',
+}
