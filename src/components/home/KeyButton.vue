@@ -4,7 +4,7 @@ defineProps<{
 }>();
 </script>
 <template>
-  <li class="key-wrap">
+  <li class="key-wrap" @click="$store.commit('enterDigit', number)">
     <div class="key-button">
       <p>
         {{ number }}

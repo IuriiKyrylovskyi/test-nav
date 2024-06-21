@@ -12,7 +12,13 @@ const { item } = props;
   <li class="nav-item">
     <p class="number">{{ item.id }}</p>
     <p class="frequency" :class="{ active: item.isActive }">
-      {{ insertDot(item.frequency) }}
+      {{
+        insertDot(
+          !!$store.state.entered && item.isActive
+            ? $store.state.entered
+            : item.frequency
+        )
+      }}
     </p>
   </li>
 </template>

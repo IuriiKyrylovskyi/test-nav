@@ -4,6 +4,7 @@ import RangeComponent from './RangeComponent.vue';
 </script>
 
 <template>
+  <div class="">{{ $store.state.entered }}</div>
   <NavComponent />
   <RangeComponent />
 </template>

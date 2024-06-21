@@ -1,18 +1,24 @@
-import defineLimits from '@/helpers/defineLimits';
+import decreaseFrequency from '@/helpers/mutations/decreaseFrequency';
+import enter from '@/helpers/mutations/enter';
+import enterDigit from '@/helpers/mutations/enterDigit';
+import increaseFrequency from '@/helpers/mutations/increaseFrequency';
+import removeDigit from '@/helpers/mutations/removeDigit';
+import reset from '@/helpers/mutations/reset';
+import toggleActiveFreq from '@/helpers/mutations/toggleActiveFreq';
 import { INavItem } from '@/interfaces/navItems';
 import navItems from '@/utils/navItems';
-import { frequencyGap, minFrequency } from 'src/utils/constants';
 import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
 
 export const key: InjectionKey<Store<INavItem[]>> = Symbol();
-interface IStoreState {
+
+export interface IStoreState {
   entered: number;
   navItems: INavItem[];
 }
 
 const initState: IStoreState = {
-  entered: minFrequency,
+  entered: 0,
   navItems: navItems,
 };
 
@@ -20,23 +26,25 @@ export const store = createStore<IStoreState>({
   state: initState,
   mutations: {
     increaseFrequency(state: IStoreState) {
-      return state.navItems.map((el) =>
-        el.isActive && defineLimits(el.frequency, 'asc')
-          ? (el.frequency += frequencyGap)
-          : el
-      );
+      return increaseFrequency(state.navItems);
     },
     decreaseFrequency(state: IStoreState) {
-      return state.navItems.map((el) =>
-        el.isActive && defineLimits(el.frequency, 'des')
-          ? (el.frequency -= frequencyGap)
-          : el
-      );
+      return decreaseFrequency(state.navItems);
     },
     toggleActiveFreq(state: IStoreState) {
-      return state.navItems.map((el) =>
-        el.isActive ? (el.isActive = false) : (el.isActive = true)
-      );
+      return toggleActiveFreq(state);
+    },
+    enter(state: IStoreState, val: number) {
+      return enter(state, val);
+    },
+    enterDigit(state: IStoreState, val: number) {
+      return enterDigit(state, val);
+    },
+    removeDigit(state: IStoreState) {
+      return removeDigit(state);
+    },
+    reset(state: IStoreState) {
+      return reset(state);
     },
   },
 });

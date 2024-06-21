@@ -2,11 +2,18 @@
 
 <template>
   <div class="controls-row">
-    <div class="control-button button">
+    <div class="control-button button" @click="$store.commit('removeDigit')">
       <p>BKSP</p>
     </div>
-    <div class="control-button button"><p>CLR</p></div>
-    <div class="control-button button"><p>ENT</p></div>
+    <div class="control-button button" @click="$store.commit('reset')">
+      <p>CLR</p>
+    </div>
+    <div
+      class="control-button button"
+      @click="$store.commit('enter', $store.state.entered)"
+    >
+      <p>ENT</p>
+    </div>
   </div>
 </template>
 
